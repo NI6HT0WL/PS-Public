@@ -1,5 +1,6 @@
 # Stop the WinRM service
-Stop-Service WinRM -PassThruSet-Service WinRM -StartupType Disabled -PassThru
+Stop-Service WinRM -PassThru 
+Set-Service WinRM -StartupType Disabled -PassThru
 
 # Remove listeners
 dir wsman:\localhost\listener
