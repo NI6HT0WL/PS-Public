@@ -12,4 +12,15 @@ Set-NetFirewallRule -DisplayName 'Windows Remote Management (HTTP-In)' -Enabled 
 # Restrict remote access to members of the Administrators group on the computer
 Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system -Name LocalAccountTokenFilterPolicy -Value 0
 
+# Disable PSRemoting
+Disable-PSRemoting -Force
+
+# Set Execution Policy back to restricted
+Set-ExecutionPolicy Restricted
+
+# Remove Modules
+Uninstall-Module -Name PSWindowsUpdate -Force
+Uninstall-Module -Name NuGet -Force
+
+# Remove Cleanup Script
 Remove-Item C:\Windows\Temp\cleanup.ps1 -Force
